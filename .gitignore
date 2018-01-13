@@ -1,8 +1,9 @@
 # Editors
-./idea
+.idea
 
 # Composer
 /vendor
+composer.lock
 
 # Common OS Files
 Thumbs.db
