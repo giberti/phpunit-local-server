@@ -1,0 +1,17 @@
+{
+    "name": "giberti/phpunit-local-server",
+    "description": "A local HTTP server for PHPUnit tests",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Erik Giberti",
+            "homepage": "https://github.com/giberti"
+        }
+    ],
+    "require": {
+        "ext-posix": "*",
+        "php": "^7.0",
+        "phpunit/phpunit": "^6.0 || ^7.0"
+    }
+}
