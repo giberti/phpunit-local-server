@@ -13,5 +13,13 @@
         "ext-posix": "*",
         "php": "^7.0",
         "phpunit/phpunit": "^6.0 || ^7.0"
+    },
+    "require-dev": {
+        "ext-curl": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Giberti\\": "src/"
+        }
     }
 }
