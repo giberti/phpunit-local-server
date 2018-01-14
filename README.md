@@ -2,6 +2,10 @@
 
 Provides an HTTP server test case for PHPUnit. The server is powered by PHP's built in server for testing of network related calls.
 
+## Quality
+
+[![Build Status](https://api.travis-ci.org/giberti/phpunit-local-server.svg?branch=master)](https://travis-ci.org/giberti/phpunit-local-server)
+
 ### Installing
 
 This library requires PHP 7.0 or newer. It _may_ run under PHP 5.6 but it is not supported.
