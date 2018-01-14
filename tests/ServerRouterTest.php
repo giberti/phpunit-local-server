@@ -1,6 +1,6 @@
 <?php
 
-use Giberti\LocalServerTestCase;
+use Giberti\PHPUnitLocalServer\LocalServerTestCase;
 
 class ServerRouterTest extends LocalServerTestCase {
 

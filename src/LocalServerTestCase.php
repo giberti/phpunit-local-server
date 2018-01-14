@@ -1,6 +1,6 @@
 <?php
 
-namespace Giberti;
+namespace Giberti\PHPUnitLocalServer;
 
 class LocalServerTestCase extends \PHPUnit\Framework\TestCase {
 
