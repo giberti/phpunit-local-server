@@ -5,5 +5,5 @@ php:
   - 7.2
   - nightly
 script:
-  composer install
-  php vendor/bin/phpunit
+  - composer install
+  - php vendor/bin/phpunit
