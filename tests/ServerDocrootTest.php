@@ -2,14 +2,17 @@
 
 use Giberti\PHPUnitLocalServer\LocalServerTestCase;
 
-class ServerDocrootTest extends LocalServerTestCase {
+class ServerDocrootTest extends LocalServerTestCase
+{
 
-    public static function setUpBeforeClass() {
+    public static function setUpBeforeClass()
+    {
         parent::setUpBeforeClass();
         static::createServerWithDocroot('./tests/localhost');
     }
 
-    public function getPaths() {
+    public function getPaths()
+    {
         return [
             'a valid file'     => [
                 '/a.php',
@@ -58,7 +61,8 @@ class ServerDocrootTest extends LocalServerTestCase {
      * @param string $path
      * @param string $expectedStatus
      */
-    public function testFetchValidFiles($path, $expectedStatus) {
+    public function testFetchValidFiles($path, $expectedStatus)
+    {
         $url = $this->getLocalServerUrl() . $path;
 
         $result = @file_get_contents($url);
@@ -68,5 +72,4 @@ class ServerDocrootTest extends LocalServerTestCase {
             $this->assertEquals($expectedStatus, $result);
         }
     }
-
 }

@@ -2,49 +2,50 @@
 
 namespace Giberti\PHPUnitLocalServer;
 
-class LocalServerTestCase extends \PHPUnit\Framework\TestCase {
+class LocalServerTestCase extends \PHPUnit\Framework\TestCase
+{
 
     /**
      * The location of PHP on this system
      *
      * @var string $phpBinary
      */
-    static $phpBinary = 'php';
+    public static $phpBinary = 'php';
 
     /**
      * The hostname to use for this test
      *
      * @var string $hostname
      */
-    static $hostname = 'localhost';
+    public static $hostname = 'localhost';
 
     /**
      * Holds references to the pid and port that was started
      *
      * @var array $server
      */
-    static $server;
+    private static $server;
 
     /**
      * Fingerprint of the currently running server config
      *
      * @var string $fingerprint
      */
-    static $fingerprint;
+    private static $fingerprint;
 
     /**
      * How many seconds to wait for an instance of the server to start
      *
      * @var int $serverStartTimeout
      */
-    static $serverStartTimeout = 2;
+    public static $serverStartTimeout = 2;
 
     /**
      * Number of seconds to wait for a new server process to start
      *
      * @var int $serviceStartTimeout
      */
-    static $processStartTimeout = 5;
+    public static $processStartTimeout = 5;
 
     /**
      * Microseconds to sleep between checks to see if server has started
@@ -55,7 +56,7 @@ class LocalServerTestCase extends \PHPUnit\Framework\TestCase {
      *
      * @var int $defaultSleep
      */
-    static $defaultSleep = 100000;
+    public static $defaultSleep = 100000;
 
     const COMMAND_TEMPLATE_DOCROOT = '%s -S %s:%d -t %s > /dev/null 2>&1 & echo $!';
     const COMMAND_TEMPLATE_ROUTER  = '%s -S %s:%d %s > /dev/null 2>&1 & echo $!';
@@ -69,7 +70,8 @@ class LocalServerTestCase extends \PHPUnit\Framework\TestCase {
      * @return bool
      * @throws \Exception
      */
-    public static function createServerWithDocroot($docroot, $forceRestart = false) {
+    public static function createServerWithDocroot($docroot, $forceRestart = false)
+    {
 
         return static::createServer(static::COMMAND_TEMPLATE_DOCROOT, $docroot, $forceRestart);
     }
@@ -83,7 +85,8 @@ class LocalServerTestCase extends \PHPUnit\Framework\TestCase {
      * @return bool
      * @throws \Exception
      */
-    public static function createServerWithRouter($router, $forceRestart = false) {
+    public static function createServerWithRouter($router, $forceRestart = false)
+    {
         if (!file_exists($router)) {
             throw new \Exception('Router file not found');
         }
@@ -96,7 +99,8 @@ class LocalServerTestCase extends \PHPUnit\Framework\TestCase {
      *
      * @return string|null Url in the form of http://{hostname}:{port}
      */
-    public function getLocalServerUrl() {
+    public function getLocalServerUrl()
+    {
         if (!static::$server) {
             return null;
         }
@@ -114,7 +118,8 @@ class LocalServerTestCase extends \PHPUnit\Framework\TestCase {
      * @return bool True if the server started, otherwise an exception
      * @throws \Exception
      */
-    private static function createServer($template, $param, $forceRestart = false) {
+    private static function createServer($template, $param, $forceRestart = false)
+    {
         $fingerprint = md5($template . $param);
 
         // Only restart the server if necessary
@@ -122,7 +127,6 @@ class LocalServerTestCase extends \PHPUnit\Framework\TestCase {
             static::destroyServer();
         } elseif (static::$server && static::isServerRunning()) {
             if (static::$fingerprint == $fingerprint) {
-
                 return true;
             }
             static::destroyServer();
@@ -183,7 +187,8 @@ class LocalServerTestCase extends \PHPUnit\Framework\TestCase {
      *
      * @return bool
      */
-    private static function isServerRunning() {
+    private static function isServerRunning()
+    {
         if (static::$server && posix_getpgid(static::$server['pid']) && static::isPortAcceptingConnections(static::$server['port'])) {
             return true;
         }
@@ -198,7 +203,8 @@ class LocalServerTestCase extends \PHPUnit\Framework\TestCase {
      *
      * @return bool True if something responds, false otherwise
      */
-    private static function isPortAcceptingConnections($port) {
+    private static function isPortAcceptingConnections($port)
+    {
         clearstatcache();
         $socket = @fsockopen(static::$hostname, $port);
         if ($socket) {
@@ -213,7 +219,8 @@ class LocalServerTestCase extends \PHPUnit\Framework\TestCase {
     /**
      * Removes the current server (if any)
      */
-    protected static function destroyServer() {
+    protected static function destroyServer()
+    {
         if (static::$server) {
             posix_kill(static::$server['pid'], 9);
             static::$server      = null;
@@ -224,7 +231,8 @@ class LocalServerTestCase extends \PHPUnit\Framework\TestCase {
     /**
      * Cleans up any remaining servers at the end of the test execution
      */
-    public static function tearDownAfterClass() {
+    public static function tearDownAfterClass()
+    {
         parent::tearDownAfterClass();
         static::destroyServer();
     }

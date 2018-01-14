@@ -2,14 +2,17 @@
 
 use Giberti\PHPUnitLocalServer\LocalServerTestCase;
 
-class ServerRouterTest extends LocalServerTestCase {
+class ServerRouterTest extends LocalServerTestCase
+{
 
-    public static function setUpBeforeClass() {
+    public static function setUpBeforeClass()
+    {
         parent::setUpBeforeClass();
         static::createServerWithRouter('./tests/localhost/router.php');
     }
 
-    public function getPaths() {
+    public function getPaths()
+    {
         return [
             'ok 200'           => [
                 '/echo-status/200',
@@ -48,7 +51,8 @@ class ServerRouterTest extends LocalServerTestCase {
      * @param string $path
      * @param string $expectedStatus
      */
-    public function testFetchValidFiles($path, $expectedStatus) {
+    public function testFetchValidFiles($path, $expectedStatus)
+    {
         $url = $this->getLocalServerUrl() . $path;
         $result = @file_get_contents($url);
         if ($expectedStatus >= 400) {
@@ -57,5 +61,4 @@ class ServerRouterTest extends LocalServerTestCase {
             $this->assertEquals($expectedStatus, $result);
         }
     }
-
 }

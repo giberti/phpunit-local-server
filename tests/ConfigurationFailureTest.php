@@ -2,17 +2,19 @@
 
 use Giberti\PHPUnitLocalServer\LocalServerTestCase;
 
-class ConfigurationFailureTest extends LocalServerTestCase {
+class ConfigurationFailureTest extends LocalServerTestCase
+{
 
     // Lowering the defaults to fail tests faster
-    static $serverStartTimeout  = 1;
-    static $processStartTimeout = 2;
+    public static $serverStartTimeout  = 1;
+    public static $processStartTimeout = 2;
 
     // Local cache to reset server between tests
-    static $cachedValues;
+    private static $cachedValues;
 
 
-    public function testTimeoutChangeWorks() {
+    public function testTimeoutChangeWorks()
+    {
         static::$serverStartTimeout  = 3;
         static::$processStartTimeout = 3;
         $startTime                   = microtime(true);
@@ -27,23 +29,27 @@ class ConfigurationFailureTest extends LocalServerTestCase {
         $this->assertGreaterThan(3, $elapsed, 'Timeout adjustment incorrect');
     }
 
-    public function testInvalidDocroot() {
+    public function testInvalidDocroot()
+    {
         $this->expectException(Exception::class);
         static::createServerWithDocroot('./tests/invalid-path');
     }
 
-    public function testInvalidRouter() {
+    public function testInvalidRouter()
+    {
         $this->expectException(Exception::class);
         static::createServerWithRouter('./invalid-router.php');
     }
 
-    public function testInvalidHostname() {
+    public function testInvalidHostname()
+    {
         $this->expectException(Exception::class);
         static::$hostname = 'invalid host name';
         static::createServerWithDocroot('./tests/localhost');
     }
 
-    public function setup() {
+    public function setup()
+    {
         parent::setup();
 
         static::$cachedValues = [
@@ -55,7 +61,8 @@ class ConfigurationFailureTest extends LocalServerTestCase {
         ];
     }
 
-    public function tearDown() {
+    public function tearDown()
+    {
         parent::tearDown();
 
         static::$hostname  = static::$cachedValues['hostname'];
