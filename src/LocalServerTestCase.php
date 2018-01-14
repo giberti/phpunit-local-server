@@ -24,14 +24,14 @@ class LocalServerTestCase extends \PHPUnit\Framework\TestCase
      *
      * @var array $server
      */
-    private static $server;
+    protected static $server;
 
     /**
      * Fingerprint of the currently running server config
      *
      * @var string $fingerprint
      */
-    private static $fingerprint;
+    protected static $fingerprint;
 
     /**
      * How many seconds to wait for an instance of the server to start
