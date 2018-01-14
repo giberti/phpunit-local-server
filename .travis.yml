@@ -5,4 +5,4 @@ php:
   - 7.2
 script:
   - composer install
-  - php vendor/bin/phpunit
+  - vendor/bin/phpunit
