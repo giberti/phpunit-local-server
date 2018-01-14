@@ -4,15 +4,27 @@ Provides an HTTP server test case for PHPUnit. The server is powered by PHP's bu
 
 ### Installing
 
+This library requires PHP 7.0 or newer. It _may_ run under PHP 5.6 but it is not supported.
+
 ```
 composer require giberti/phpunit-local-server
 ```
 
 ### Usage
 
-To use, extend `\Giberti\PHPUnitLocalServer\LocalServerTestCase` as if you were extending `\PHPUnit\Framework\TestCase`.
+* Create a directory that will contain the code you want to execute
+* Extend the `\Giberti\PHPUnitLocalServer\LocalServerTestCase` as if you were extending `\PHPUnit\Framework\TestCase`
+* Start a server in the test method or for the entire class
+* Make requests against the server
+
+#### Usage Tips
+
+* Whenever possible, re-use the existing server. Frequent restarts will slow down your tests.
+* You can provide a different `php` binary by overriding the static `$phpBinary` property on the class.
 
 ##### A single test
+
+Call either the `createServerWithDocroot()` or `createServerWithRouter()` helper method and then execute your test.
 
 ```php
 use Giberti\PHPUnitLocalServer\LocalServerTestCase;
@@ -32,6 +44,8 @@ class Test extends LocalServerTestCase
 ```
 
 ##### Several tests using the same configuration
+
+To optimize performance of your tests, it's best to re-use the server whenever possible. To make this easier, simply start the server at the beginning of the class by defining a `setupBeforeClass()` method with your desired configuration.
 
 ```php
 use Giberti\PHPUnitLocalServer\LocalServerTestCase;
@@ -59,6 +73,62 @@ class Test extends LocalServerTestCase
 }
 ```
 
+##### Modifying the server runtime version
+
+It's possible to run the server under a different PHP runtime than the version running your test suite. This can help with testing your code under multiple versions of PHP. In the example below, the server will start with the PHP 5.6 binary running on the test system.
+
+```php
+use Giberti\PHPUnitLocalServer\LocalServerTestCase;
+
+class Test56 extends LocalServerTestCase
+{
+
+    static $phpBinary = '/usr/local/bin/php56';
+
+    public function testFoo() {
+        static::createServerWithDocroot('./tests/localhost');
+
+        $url = $this->getLocalServer() . '/foo';
+        $content = file_get_contents($url);
+
+        $this->assertEquals('...', $content, 'Content mismatch');
+    }
+
+}
+
+class Test70 extends LocalServerTestCase
+{
+
+    static $phpBinary = '/usr/local/bin/php70';
+
+    public function testFoo() {
+        static::createServerWithDocroot('./tests/localhost');
+
+        $url = $this->getLocalServer() . '/foo';
+        $content = file_get_contents($url);
+
+        $this->assertEquals('...', $content, 'Content mismatch');
+    }
+
+}
+
+class Test71 extends LocalServerTestCase
+{
+
+    static $phpBinary = '/usr/local/bin/php71';
+
+    public function testFoo() {
+        static::createServerWithDocroot('./tests/localhost');
+
+        $url = $this->getLocalServer() . '/foo';
+        $content = file_get_contents($url);
+
+        $this->assertEquals('...', $content, 'Content mismatch');
+    }
+
+}
+
+```
 
 ### Methods
 
