@@ -120,21 +120,22 @@ class LocalServerTestCase extends \PHPUnit\Framework\TestCase
      */
     private static function createServer($template, $param, $forceRestart = false)
     {
+        static $port;
+        if (!$port) {
+            $port = 8000;
+        }
+
         $fingerprint = md5($template . $param);
 
         // Only restart the server if necessary
         if ($forceRestart) {
+            $port++;
             static::destroyServer();
         } elseif (static::$server && static::isServerRunning()) {
             if (static::$fingerprint == $fingerprint) {
                 return true;
             }
             static::destroyServer();
-        }
-
-        static $port;
-        if (!$port) {
-            $port = 8000;
         }
 
         $processStartTime = microtime(true);
