@@ -50,7 +50,7 @@ class ConfigurationFailureTest extends LocalServerTestCase {
             'hostname'  => static::$hostname,
             'phpBinary' => static::$phpBinary,
 
-            'serveStartTimeout'   => static::$serverStartTimeout,
+            'serverStartTimeout'  => static::$serverStartTimeout,
             'processStartTimeout' => static::$processStartTimeout,
         ];
     }
