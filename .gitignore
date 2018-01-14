@@ -5,6 +5,8 @@
 /vendor
 composer.lock
 
+Dockerfile
+
 # Common OS Files
 Thumbs.db
 ehthumbs.db
