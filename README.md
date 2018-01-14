@@ -24,9 +24,7 @@ class Test extends LocalServerTestCase
         static::createServerWithDocroot('./tests/localhost');
         $url = $this->getLocalServerUrl() . '/foo';
 
-        $fh = fopen($url);
-        $content = fread($fh, 1024);
-        fclose($fh);
+        $content = file_get_contents($url);
 
         $this->assertEquals('...', $content, 'Content mismatch');
     }
@@ -47,18 +45,14 @@ class Test extends LocalServerTestCase
 
     public function testFoo() {
         $url = $this->getLocalServer() . '/foo';
-        $fh = fopen($this->getLocalServerUrl());
-        $content = fread($fh, 1024);
-        fclose($fh);
+        $content = file_get_contents($url);
 
         $this->assertEquals('...', $content, 'Content mismatch');
     }
 
     public function testBar() {
         $url = $this->getLocalServer() . '/bar';
-        $fh = fopen($this->getLocalServerUrl());
-        $content = fread($fh, 1024);
-        fclose($fh);
+        $content = file_get_contents($url);
 
         $this->assertEquals('...', $content, 'Content mismatch');
     }
