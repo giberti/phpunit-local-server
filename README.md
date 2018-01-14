@@ -154,7 +154,7 @@ static::createServerWithRouter('./path/to/router.php');
 
 Removes the local server. Useful to reset the session state. This is automatically called in the `tearDownAfterClass()` lifecycle method.
 
-```
+```php
 static::destroyServer()
 ```
 
