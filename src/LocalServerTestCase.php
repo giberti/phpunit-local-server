@@ -63,7 +63,7 @@ class LocalServerTestCase extends \PHPUnit\Framework\TestCase {
     /**
      * Start a local server with the provided document root
      *
-     * @param string $docroot The directory that should be used for the server
+     * @param string $docroot      The directory that should be used for the server
      * @param bool   $forceRestart True will restart the server, even if the configuration is the same
      *
      * @return bool
@@ -77,7 +77,7 @@ class LocalServerTestCase extends \PHPUnit\Framework\TestCase {
     /**
      * Start a local server with the provided router file
      *
-     * @param string $router The router file the server should use
+     * @param string $router       The router file the server should use
      * @param bool   $forceRestart True will restart the server, even if the configuration is the same
      *
      * @return bool
@@ -107,8 +107,8 @@ class LocalServerTestCase extends \PHPUnit\Framework\TestCase {
     /**
      * Start the PHP HTTP server
      *
-     * @param string $template The COMMAND_TEMPLATE_* constant used to generate the start server command
-     * @param string $param Either the router file or document route to use with this server
+     * @param string $template     The COMMAND_TEMPLATE_* constant used to generate the start server command
+     * @param string $param        Either the router file or document route to use with this server
      * @param bool   $forceRestart True will restart the server, even if the configuration is the same
      *
      * @return bool True if the server started, otherwise an exception
@@ -144,7 +144,7 @@ class LocalServerTestCase extends \PHPUnit\Framework\TestCase {
             $command = sprintf($template, static::$phpBinary, static::$hostname, $port, $param);
             exec($command, $output);
             $serverStartTime = microtime(true);
-            $pid = $output[0];
+            $pid             = $output[0];
 
             // Wait for server to respond
             do {
@@ -174,6 +174,7 @@ class LocalServerTestCase extends \PHPUnit\Framework\TestCase {
         }
 
         static::$fingerprint = $fingerprint;
+
         return true;
     }
 
@@ -183,10 +184,7 @@ class LocalServerTestCase extends \PHPUnit\Framework\TestCase {
      * @return bool
      */
     private static function isServerRunning() {
-        if (static::$server
-            && posix_getpgid(static::$server['pid'])
-            && static::isPortAcceptingConnections(static::$server['port'])
-        ){
+        if (static::$server && posix_getpgid(static::$server['pid']) && static::isPortAcceptingConnections(static::$server['port'])) {
             return true;
         }
 
@@ -218,7 +216,7 @@ class LocalServerTestCase extends \PHPUnit\Framework\TestCase {
     protected static function destroyServer() {
         if (static::$server) {
             posix_kill(static::$server['pid'], 9);
-            static::$server = null;
+            static::$server      = null;
             static::$fingerprint = null;
         }
     }

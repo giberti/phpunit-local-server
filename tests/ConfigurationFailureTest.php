@@ -15,8 +15,8 @@ class ConfigurationFailureTest extends LocalServerTestCase {
     public function testTimeoutChangeWorks() {
         static::$serverStartTimeout  = 3;
         static::$processStartTimeout = 3;
-        $startTime = microtime(true);
-        $e = null;
+        $startTime                   = microtime(true);
+        $e                           = null;
         try {
             static::createServerWithDocroot('./tests/invalid-path');
         } catch (Exception $e) {

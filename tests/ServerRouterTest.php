@@ -11,13 +11,34 @@ class ServerRouterTest extends LocalServerTestCase {
 
     public function getPaths() {
         return [
-            'ok 200'           => ['/echo-status/200', 200],
-            'moved 301'        => ['/echo-status/301', 301],
-            'moved 302'        => ['/echo-status/302', 302],
-            'bad request 400'  => ['/echo-status/400', 400],
-            'unauthorized 401' => ['/echo-status/401', 401],
-            'not found 404'    => ['/echo-status/404', 404],
-            'server error 500' => ['/echo-status/500', 500],
+            'ok 200'           => [
+                '/echo-status/200',
+                200,
+            ],
+            'moved 301'        => [
+                '/echo-status/301',
+                301,
+            ],
+            'moved 302'        => [
+                '/echo-status/302',
+                302,
+            ],
+            'bad request 400'  => [
+                '/echo-status/400',
+                400,
+            ],
+            'unauthorized 401' => [
+                '/echo-status/401',
+                401,
+            ],
+            'not found 404'    => [
+                '/echo-status/404',
+                404,
+            ],
+            'server error 500' => [
+                '/echo-status/500',
+                500,
+            ],
         ];
     }
 
