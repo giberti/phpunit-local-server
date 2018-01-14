@@ -61,13 +61,12 @@ class ServerDocrootTest extends LocalServerTestCase {
     public function testFetchValidFiles($path, $expectedStatus) {
         $url = $this->getLocalServerUrl() . $path;
 
-        $curl = curl_init($url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_exec($curl);
-        $curlinfo = curl_getinfo($curl);
-        curl_close($curl);
-
-        $this->assertEquals($expectedStatus, $curlinfo['http_code'], 'Unexpected status code returned');
+        $result = @file_get_contents($url);
+        if ($expectedStatus >= 400) {
+            $this->assertFalse($result);
+        } else {
+            $this->assertEquals($expectedStatus, $result);
+        }
     }
 
 }
