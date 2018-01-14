@@ -135,6 +135,7 @@ class LocalServerTestCase extends \PHPUnit\Framework\TestCase
             if (static::$fingerprint == $fingerprint) {
                 return true;
             }
+            $port++;
             static::destroyServer();
         }
 
