@@ -2,7 +2,7 @@
 
 namespace Giberti\PHPUnitLocalServer;
 
-class LocalServerTestCase extends \PHPUnit\Framework\TestCase
+abstract class LocalServerTestCase extends \PHPUnit\Framework\TestCase
 {
 
     /**
