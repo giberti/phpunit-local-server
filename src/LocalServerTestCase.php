@@ -208,7 +208,11 @@ abstract class LocalServerTestCase extends \PHPUnit\Framework\TestCase
     private static function isPortAcceptingConnections($port)
     {
         clearstatcache();
-        $socket = @fsockopen(static::$hostname, $port);
+        try {
+            $socket = @fsockopen(static::$hostname, $port);
+        } catch (\Throwable $e) {
+            /* phpunit might have set convertWarningsToExceptions */
+        }
         if ($socket) {
             fclose($socket);
 
