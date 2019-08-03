@@ -8,7 +8,7 @@ Provides an HTTP server test case for PHPUnit. The server is powered by PHP's bu
 
 ### Installing
 
-This library requires PHP 7.0 or newer. It _may_ run under PHP 5.6 but it is not supported.
+This library requires PHP 7.1 or newer. It will run with PHPUnit versions 7 and 8.
 
 ```
 composer require giberti/phpunit-local-server
@@ -35,7 +35,6 @@ use Giberti\PHPUnitLocalServer\LocalServerTestCase;
 
 class Test extends LocalServerTestCase
 {
-
     public function testFoo() {
         static::createServerWithDocroot('./tests/localhost');
         $url = $this->getLocalServerUrl() . '/foo';
@@ -56,7 +55,6 @@ use Giberti\PHPUnitLocalServer\LocalServerTestCase;
 
 class Test extends LocalServerTestCase
 {
-
     public static function setupBeforeClass() {
         static::createServerWithDocroot('./tests/localhost');
     }
@@ -79,46 +77,13 @@ class Test extends LocalServerTestCase
 
 ##### Modifying the server runtime version
 
-It's possible to run the server under a different PHP runtime than the version running your test suite. This can help with testing your code under multiple versions of PHP. In the example below, the server will start with the PHP 5.6 binary running on the test system.
+It's possible to run the server under a different PHP runtime than the version running your test suite. This can help with testing your code under multiple versions of PHP. In the example below, the server will start with the PHP 7.1 and 7.2 binary running on the test system.
 
 ```php
 use Giberti\PHPUnitLocalServer\LocalServerTestCase;
 
-class Test56 extends LocalServerTestCase
-{
-
-    static $phpBinary = '/usr/local/bin/php56';
-
-    public function testFoo() {
-        static::createServerWithDocroot('./tests/localhost');
-
-        $url = $this->getLocalServer() . '/foo';
-        $content = file_get_contents($url);
-
-        $this->assertEquals('...', $content, 'Content mismatch');
-    }
-
-}
-
-class Test70 extends LocalServerTestCase
-{
-
-    static $phpBinary = '/usr/local/bin/php70';
-
-    public function testFoo() {
-        static::createServerWithDocroot('./tests/localhost');
-
-        $url = $this->getLocalServer() . '/foo';
-        $content = file_get_contents($url);
-
-        $this->assertEquals('...', $content, 'Content mismatch');
-    }
-
-}
-
 class Test71 extends LocalServerTestCase
 {
-
     static $phpBinary = '/usr/local/bin/php71';
 
     public function testFoo() {
@@ -129,9 +94,21 @@ class Test71 extends LocalServerTestCase
 
         $this->assertEquals('...', $content, 'Content mismatch');
     }
-
 }
 
+class Test72 extends LocalServerTestCase
+{
+    static $phpBinary = '/usr/local/bin/php72';
+
+    public function testFoo() {
+        static::createServerWithDocroot('./tests/localhost');
+
+        $url = $this->getLocalServer() . '/foo';
+        $content = file_get_contents($url);
+
+        $this->assertEquals('...', $content, 'Content mismatch');
+    }
+}
 ```
 
 ### Methods

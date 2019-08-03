@@ -5,7 +5,7 @@ use Giberti\PHPUnitLocalServer\LocalServerTestCase;
 class ServerDocrootTest extends LocalServerTestCase
 {
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
         static::createServerWithDocroot('./tests/localhost');

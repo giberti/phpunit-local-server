@@ -237,7 +237,7 @@ abstract class LocalServerTestCase extends \PHPUnit\Framework\TestCase
     /**
      * Cleans up any remaining servers at the end of the test execution
      */
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         parent::tearDownAfterClass();
         static::destroyServer();
