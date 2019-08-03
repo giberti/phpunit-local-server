@@ -2,7 +2,7 @@
 
 use Giberti\PHPUnitLocalServer\LocalServerTestCase;
 
-class OptimizationTest extends LocalServerTestCase
+class ConfigurationOptimizationTest extends LocalServerTestCase
 {
 
     public function testReuseExistingServer()
@@ -48,7 +48,7 @@ class OptimizationTest extends LocalServerTestCase
     }
 
 
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
         static::destroyServer();

@@ -48,7 +48,7 @@ class ConfigurationFailureTest extends LocalServerTestCase
         static::createServerWithDocroot('./tests/localhost');
     }
 
-    public function setup()
+    public function setup(): void
     {
         parent::setup();
 
@@ -61,7 +61,7 @@ class ConfigurationFailureTest extends LocalServerTestCase
         ];
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
 
