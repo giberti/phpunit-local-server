@@ -77,7 +77,7 @@ class Test extends LocalServerTestCase
 
 ##### Modifying the server runtime version
 
-It's possible to run the server under a different PHP runtime than the version running your test suite. This can help with testing your code under multiple versions of PHP. In the example below, the server will start with the PHP 7.1 and 7.2 binary running on the test system.
+It's possible to run the server under a different PHP runtime than the version running your test suite. This can help with testing your code under multiple versions of PHP. In the example below, the server will start with the PHP 7.2 and 7.3 binary running on the test system.
 
 ```php
 use Giberti\PHPUnitLocalServer\LocalServerTestCase;
