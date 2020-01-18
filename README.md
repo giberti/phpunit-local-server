@@ -8,7 +8,7 @@ Provides an HTTP server test case for PHPUnit. The server is powered by PHP's bu
 
 ### Installing
 
-This library requires PHP 7.1 or newer. It will run with PHPUnit versions 7 and 8.
+This library requires PHP 7.2 or newer. It will run with PHPUnit versions 7 and 8.
 
 ```
 composer require giberti/phpunit-local-server
@@ -82,9 +82,9 @@ It's possible to run the server under a different PHP runtime than the version r
 ```php
 use Giberti\PHPUnitLocalServer\LocalServerTestCase;
 
-class Test71 extends LocalServerTestCase
+class Test72 extends LocalServerTestCase
 {
-    static $phpBinary = '/usr/local/bin/php71';
+    static $phpBinary = '/usr/local/bin/php72';
 
     public function testFoo() {
         static::createServerWithDocroot('./tests/localhost');
@@ -96,9 +96,9 @@ class Test71 extends LocalServerTestCase
     }
 }
 
-class Test72 extends LocalServerTestCase
+class Test73 extends LocalServerTestCase
 {
-    static $phpBinary = '/usr/local/bin/php72';
+    static $phpBinary = '/usr/local/bin/php73';
 
     public function testFoo() {
         static::createServerWithDocroot('./tests/localhost');
