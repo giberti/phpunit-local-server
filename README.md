@@ -4,11 +4,11 @@ Provides an HTTP server test case for PHPUnit. The server is powered by PHP's bu
 
 ## Quality
 
-[![Build Status](https://api.travis-ci.org/giberti/phpunit-local-server.svg?branch=master)](https://travis-ci.org/giberti/phpunit-local-server)
+[![Build Status](https://api.travis-ci.com/giberti/phpunit-local-server.svg?branch=master)](https://travis-ci.com/giberti/phpunit-local-server)
 
 ### Installing
 
-This library requires PHP 7.2 or newer. It will run with PHPUnit versions 7 and 8.
+This library requires PHP 7.2 or newer, including PHP 8.0. It will run with PHPUnit versions 7 and 8.
 
 ```
 composer require giberti/phpunit-local-server
@@ -136,7 +136,7 @@ static::createServerWithRouter('./path/to/router.php');
 Removes the local server. Useful to reset the session state. This is automatically called in the `tearDownAfterClass()` lifecycle method.
 
 ```php
-static::destroyServer()
+static::destroyServer();
 ```
 
 #### public string LocalServerTestCase::getServerUrl(void)
