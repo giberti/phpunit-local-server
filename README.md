@@ -4,11 +4,11 @@ Provides an HTTP server test case for PHPUnit. The server is powered by PHP's bu
 
 ## Quality
 
-[![Build Status](https://api.travis-ci.com/giberti/phpunit-local-server.svg?branch=master)](https://travis-ci.com/giberti/phpunit-local-server)
+[![Build Status](https://app.travis-ci.com/giberti/phpunit-local-server.svg?branch=main)](https://app.travis-ci.com/github/giberti/phpunit-local-server)
 
 ### Installing
 
-This library requires PHP 7.2 or newer, including PHP 8.0. It will run with PHPUnit versions 7 and 8.
+This library requires PHP 7.3 or newer, including PHP 8.0 and 8.1. It will run with PHPUnit versions 8 and 9.
 
 ```
 composer require giberti/phpunit-local-server
@@ -77,14 +77,14 @@ class Test extends LocalServerTestCase
 
 ##### Modifying the server runtime version
 
-It's possible to run the server under a different PHP runtime than the version running your test suite. This can help with testing your code under multiple versions of PHP. In the example below, the server will start with the PHP 7.2 and 7.3 binary running on the test system.
+It's possible to run the server under a different PHP runtime than the version running your test suite. This can help with testing your code under multiple versions of PHP. In the example below, the server will start with the PHP 7.3 and 8.1 executable in `/usr/local/bin/` on the host test system. Your path may be different.
 
 ```php
 use Giberti\PHPUnitLocalServer\LocalServerTestCase;
 
-class Test72 extends LocalServerTestCase
+class Test73 extends LocalServerTestCase
 {
-    static $phpBinary = '/usr/local/bin/php72';
+    static $phpBinary = '/usr/local/bin/php73';
 
     public function testFoo() {
         static::createServerWithDocroot('./tests/localhost');
@@ -96,9 +96,9 @@ class Test72 extends LocalServerTestCase
     }
 }
 
-class Test73 extends LocalServerTestCase
+class Test81 extends LocalServerTestCase
 {
-    static $phpBinary = '/usr/local/bin/php73';
+    static $phpBinary = '/usr/local/bin/php81';
 
     public function testFoo() {
         static::createServerWithDocroot('./tests/localhost');
