@@ -1,6 +1,6 @@
 # PHPUnit Local Server
 
-Provides an HTTP server test case for PHPUnit. The server is powered by PHP's built in server for testing of network related calls.
+Provides an HTTP server test case for PHPUnit. The server is powered by PHP's built-in server for testing of network related calls.
 
 ## Quality
 
@@ -8,7 +8,7 @@ Provides an HTTP server test case for PHPUnit. The server is powered by PHP's bu
 
 ### Installing
 
-This library requires PHP 7.3 or newer, including PHP 8.0 and 8.1. It will run with PHPUnit versions 8 and 9.
+This library requires PHP 7.3 or newer, including PHP 8.0, 8,1, and 8.2. It will run with PHPUnit versions 8 and 9.
 
 ```
 composer require giberti/phpunit-local-server
