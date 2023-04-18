@@ -2,10 +2,6 @@
 
 Provides an HTTP server test case for PHPUnit. The server is powered by PHP's built-in server for testing of network related calls.
 
-## Quality
-
-[![Build Status](https://app.travis-ci.com/giberti/phpunit-local-server.svg?branch=main)](https://app.travis-ci.com/github/giberti/phpunit-local-server)
-
 ### Installing
 
 This library requires PHP 7.3 or newer, including PHP 8.0, 8,1, and 8.2. It will run with PHPUnit versions 8 and 9.
