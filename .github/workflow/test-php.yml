@@ -1,0 +1,47 @@
+name: Build and Test
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  run:
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        php-versions: ['7.3', '7.4', '8.0', '8.1', '8.2']
+
+  build:
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup PHP ${{ matrix.php-versions }}
+        uses: shivammathur/setup-php@2.9.0
+        with:
+          php-version: ${{ matrix.php-versions }}
+
+      - name: Validate composer.json
+        run: composer validate
+
+      - name: Add caching for Composer packages
+        uses: actions/cache/restore@v3
+        id: composer-cache
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ matrix.php-versions }}-${{ hashFiles('**/composer.lock') }}
+
+      - name: Install dependencies
+        if: steps.composer-cache.outputs.cache-hit != 'true'
+        run: composer install --prefer-dist --no-progress
+
+      - name: Run test suite
+        run: composer run-script test
+
+      - name: Update Composer package cache
+        uses: actions/cache/save@v3
+        id: composer-cache
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ matrix.php-versions }}-${{ hashFiles('**/composer.lock') }}
