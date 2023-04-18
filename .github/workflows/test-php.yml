@@ -7,20 +7,19 @@ on:
       - main
 
 jobs:
-  run:
+  build:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        php-versions: ['7.3', '7.4', '8.0', '8.1', '8.2']
+        versions: ['7.3', '7.4', '8.0', '8.1', '8.2']
 
-  build:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup PHP ${{ matrix.php-versions }}
+      - name: Setup PHP ${{ matrix.versions }}
         uses: shivammathur/setup-php@2.9.0
         with:
-          php-version: ${{ matrix.php-versions }}
+          php-version: ${{ matrix.versions }}
 
       - name: Validate composer.json
         run: composer validate
