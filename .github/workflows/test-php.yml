@@ -26,7 +26,7 @@ jobs:
 
       - name: Add caching for Composer packages
         uses: actions/cache/restore@v3
-        id: composer-cache
+        id: composer-restore
         with:
           path: vendor
           key: ${{ runner.os }}-php-${{ matrix.php-versions }}-${{ hashFiles('**/composer.lock') }}
@@ -40,7 +40,7 @@ jobs:
 
       - name: Update Composer package cache
         uses: actions/cache/save@v3
-        id: composer-cache
+        id: composer-save
         with:
           path: vendor
           key: ${{ runner.os }}-php-${{ matrix.php-versions }}-${{ hashFiles('**/composer.lock') }}
