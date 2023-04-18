@@ -1,4 +1,5 @@
 # PHPUnit Local Server
+[![Build and Test](https://github.com/giberti/phpunit-local-server/actions/workflows/test-php.yml/badge.svg)](https://github.com/giberti/phpunit-local-server/actions/workflows/test-php.yml)
 
 Provides an HTTP server test case for PHPUnit. The server is powered by PHP's built-in server for testing of network related calls.
 
