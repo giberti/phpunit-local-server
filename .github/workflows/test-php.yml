@@ -2,19 +2,21 @@ name: Build and Test
 
 on:
   pull_request:
+    branches:
+      - main
   push:
     branches:
       - main
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        versions: ['7.3', '7.4', '8.0', '8.1', '8.2', '8.3']
+        versions: ['7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5']
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup PHP ${{ matrix.versions }}
         uses: shivammathur/setup-php@v2
@@ -24,12 +26,14 @@ jobs:
       - name: Validate composer.json
         run: composer validate
 
-      - name: Add caching for Composer packages
-        uses: actions/cache/restore@v3
+      - name: Cache Composer packages
+        uses: actions/cache@v4
         id: composer-restore
         with:
           path: vendor
-          key: ${{ runner.os }}-php-${{ matrix.php-versions }}-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
 
       - name: Install dependencies
         if: steps.composer-cache.outputs.cache-hit != 'true'
