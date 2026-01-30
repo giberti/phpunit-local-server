@@ -11,7 +11,7 @@ class ServerDocrootTest extends LocalServerTestCase
         static::createServerWithDocroot('./tests/localhost');
     }
 
-    public function getPaths()
+    public static function getPaths()
     {
         return [
             'a valid file'     => [

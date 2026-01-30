@@ -11,7 +11,7 @@ class ServerRouterTest extends LocalServerTestCase
         static::createServerWithRouter('./tests/localhost/router.php');
     }
 
-    public function getPaths()
+    public static function getPaths()
     {
         return [
             'ok 200'           => [
