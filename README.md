@@ -5,7 +5,7 @@ Provides an HTTP server test case for PHPUnit. The server is powered by PHP's bu
 
 ### Installing
 
-This library requires PHP 7.3 or newer, including PHP 8.0, 8,1, and 8.2. It will run with PHPUnit versions 8 and 9.
+This library requires PHP 7.3 or newer, including PHP 8.0 through 8.5. It will run with PHPUnit versions 8, 9, 10, and 11.
 
 ```
 composer require giberti/phpunit-local-server
